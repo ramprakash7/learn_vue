@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 2</title>
+
+
+</head>
+<style>
+    .btn-add-color{
+        background-color:chocolate;
+    }
+</style>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <form id="form">
+        <input type="text" id="input" v-model="message" >
+       <p>Above input data here : {{message}}</p> 
+    </form>
+    <div id="html_list">
+        <ul>
+            <li v-for="course_name in courses">
+                {{course_name}}
+            </li>
+        </ul>
+
+   <!-- <ul>
+            <li v-for="course_name in courses" v-text="course_name">
+            </li>
+        </ul> -->
+        <input type="text" id="new_course">
+        <button :class="className" type="button" @click="addCourse"> Add New Course</button>
+
+        <p >This is a computed Msg: {{reverseMsg}}</p>
+        <ul>
+            <li v-for="task in successfullTask" v-if="task.success!=0" v-text="task.description">
+            </li>
+        </ul>
+    </div>
+
+    <div id="header">
+        <task-list></task-list>
+    </div>
+      <script> 
+        var app = new Vue({
+            el: '#form',
+            data: {
+                message: 'Hello Vue!'
+            },
+            // mounted(){
+            //     alert('ready');
+            // }
+        })
+
+        var html_list = new Vue({
+            el: '#html_list',
+            data:{
+                courses:['laravel','php','vuejs'],
+                className:"btn-add-color",
+                msg:'dlrow olleH',
+                tasks:[
+                        { description:'task1',success:false},
+                        { description:'task2',success:true},
+                        { description:'task3',success:false},
+                        { description:'task4',success:true},
+                        { description:'task5',success:false}
+                    ] 
+            },
+            methods:{
+                addCourse() {
+                    new_course = document.querySelector('#new_course');
+                    // html_list.courses.push(new_course.value);
+                    this.courses.push(new_course.value);
+                    new_course.value ='';
+
+                }
+            },
+        
+            computed:{
+                reverseMsg() {
+                    return this.msg.split('').reverse().join('');
+                },
+                successfullTask() {
+                    return this.tasks.filter(task => task.success);
+                }
+            }
+        })
+
+        // document.querySelector('#add').addEventListener('click',()=>{
+        //     new_course = document.querySelector('#new_course');
+        //     html_list.courses.push(new_course.value);
+        //     new_course.value ='';
+        // })
+        // document.querySelector('#input').value =  data.message;
+    </script>   
+    <script src="C:\xampp\htdocs\vue\headers.js"></script>
+</body>
+</html>
+
+
+
