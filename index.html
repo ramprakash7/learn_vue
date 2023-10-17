@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue 2</title>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
 </head>
 <style>
@@ -13,18 +13,38 @@
 </style>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <form id="form">
-        <input type="text" id="input" v-model="message" >
-       <p>Above input data here : {{message}}</p> 
-    </form>
+
+    <div id="root" class="container">
+        <tabs>
+            <tab name="Add Course " :selected="true">
+                <h3 >About</h3>
+            </tab>
+            <tab name="About ">
+                <h3 >About</h3>
+            </tab>
+            <tab name="Contact Us">
+                <h3>Contact us</h3>
+            </tab>
+            <tab name="Register">
+                <h3>Register</h3>
+            </tab>
+        </tabs>
+    </div>
+    
+
+    <br>
+    <h3>Array List Bind</h3>
     <div id="html_list">
         <ul>
             <li v-for="course_name in courses">
                 {{course_name}}
             </li>
         </ul>
-
-   <!-- <ul>
+        <!-- <form id="form">
+            <input type="text" id="input" v-model="message" >
+            <p>Above input data here : {{message}}</p> 
+        </form> -->
+        <!--<ul>
             <li v-for="course_name in courses" v-text="course_name">
             </li>
         </ul> -->
@@ -41,17 +61,17 @@
     <div id="header">
         <task-list></task-list>
     </div>
+ </div>
       <script> 
-        var app = new Vue({
-            el: '#form',
-            data: {
-                message: 'Hello Vue!'
-            },
-            // mounted(){
-            //     alert('ready');
-            // }
-        })
-
+        // var app = new Vue({
+        //     el: '#form',
+        //     data: {
+        //         message: 'Hello Vue!'
+        //     },
+        //     // mounted(){
+        //     //     alert('ready');
+        //     // }
+        // })
         var html_list = new Vue({
             el: '#html_list',
             data:{
